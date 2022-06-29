@@ -1,0 +1,3 @@
+id,username,firstName,lastName,email,password,phone,userStatus
+101,bash,Alina,Bashlykova,alina.user@mailinator.com,123!@#qweASD,+491345678121,20
+102,bugFix1,Miro,Smit,miro1.user@mailinator.com,test12345,+80713456789,10
