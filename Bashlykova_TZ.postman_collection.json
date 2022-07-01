@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "a36f5852-3e65-4747-a97b-f9338bd06860",
+		"name": "Bashlykova_TZ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createWithArray",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"    pm.expect(message).to.eq(\"ok\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": {{id}},\n        \"username\": \"{{username}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"email\": \"{{email}}\",\n        \"password\": \"{{password}}\",\n        \"phone\": \"{{phone}}\",\n        \"userStatus\": {{userStatus}}\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/createWithArray",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						"createWithArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createWithList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"    pm.expect(message).to.eq(\"ok\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"id\": {{id}},\n        \"username\": \"{{username}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"email\": \"{{email}}\",\n        \"password\": \"{{password}}\",\n        \"phone\": \"{{phone}}\",\n        \"userStatus\": {{userStatus}}\n    }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/createWithList",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						"createWithList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {id, username, firstName, lastName, email, password, phone, userStatus} = pm.response.json()",
+							"",
+							"    prepareData()",
+							"    pm.expect(`${id}`).to.eq(`${data.id}`)",
+							"    pm.expect(username).to.eq(data.username)",
+							"    pm.expect(firstName).to.eq(data.firstName)",
+							"    pm.expect(lastName).to.eq(data.lastName)",
+							"    pm.expect(email).to.eq(data.email)",
+							"    pm.expect(password).to.eq(data.password)",
+							"    pm.expect(phone).to.eq(`${data.phone}`)",
+							"    pm.expect(`${userStatus}`).to.eq(`${data.userStatus}`)",
+							"})",
+							"",
+							"function prepareData() {",
+							"    if (Object.keys(data).length === 0){",
+							"        data.id = pm.variables.get(\"id\")",
+							"        data.username = pm.variables.get(\"username\")",
+							"        data.password = pm.variables.get(\"password\")",
+							"        data.firstName = pm.variables.get(\"firstName\")",
+							"        data.lastName = pm.variables.get(\"lastName\")",
+							"        data.email = pm.variables.get(\"email\")",
+							"        data.phone = pm.variables.get(\"phone\")",
+							"        data.userStatus = pm.variables.get(\"userStatus\")",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/:username",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						":username"
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"    prepareData()  ",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"    pm.expect(message).to.eq(`${data.id}`)",
+							"})",
+							"",
+							"function prepareData() {",
+							"    if (Object.keys(data).length === 0){",
+							"        data.id = pm.variables.get(\"id\")",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": {{id}},\n    \"username\": \"{{username}}\",\n    \"firstName\": \"{{firstName}}\",\n    \"lastName\": \"{{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"phone\": \"{{phone}}\",\n    \"userStatus\": {{userStatus}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/:username",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						":username"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"    prepareData()  ",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"    pm.expect(message).to.eq(data.username)",
+							"})",
+							"",
+							"function prepareData() {",
+							"    if (Object.keys(data).length === 0){",
+							"        data.username = pm.variables.get(\"username\")",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/:username",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						":username"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logs user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"})",
+							"",
+							"pm.test(\"check_timestamp\", function(){",
+							"    pm.expect(pm.response.json().message).to.eq(`logged in user session:${new Date().getTime()}`)",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user/login?username={{username}}&password={{password}}",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{username}}"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"check_body\", function(){",
+							"    let {code, type, message} = pm.response.json()",
+							"    prepareData()   ",
+							"",
+							"    pm.expect(code).to.eq(200)",
+							"    pm.expect(type).to.eq(\"unknown\")",
+							"    pm.expect(message).to.eq(`${data.id}`)",
+							"})",
+							"",
+							"function prepareData() {",
+							"    if (Object.keys(data).length === 0){",
+							"        data.id = pm.variables.get(\"id\")",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": {{id}},\n        \"username\": \"{{username}}\",\n        \"firstName\": \"{{firstName}}\",\n        \"lastName\": \"{{lastName}}\",\n        \"email\": \"{{email}}\",\n        \"password\": \"{{password}}\",\n        \"phone\": \"{{phone}}\",\n        \"userStatus\": {{userStatus}}\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}{{api_version}}user",
+					"host": [
+						"{{base_url}}{{api_version}}user"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"check_status\", function(){",
+					"    pm.response.to.have.status(200)",
+					"})"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://petstore.swagger.io/"
+		},
+		{
+			"key": "api_version",
+			"value": "v2/"
+		},
+		{
+			"key": "username",
+			"value": "Trit$"
+		},
+		{
+			"key": "password",
+			"value": "Alina123!&"
+		},
+		{
+			"key": "id",
+			"value": "103"
+		},
+		{
+			"key": "firstName",
+			"value": "Tonny"
+		},
+		{
+			"key": "lastName",
+			"value": "Honest"
+		},
+		{
+			"key": "email",
+			"value": "tonny$user@mailinator.com"
+		},
+		{
+			"key": "phone",
+			"value": "+380683219865"
+		},
+		{
+			"key": "userStatus",
+			"value": "20"
+		}
+	]
+}
