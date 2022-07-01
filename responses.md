@@ -23,3 +23,11 @@
     "message": "bad input"
 }
 ```
+# delete user
+```json
+{
+    "code": 200,
+    "type": "unknown",
+    "message": "103"
+}
+```
